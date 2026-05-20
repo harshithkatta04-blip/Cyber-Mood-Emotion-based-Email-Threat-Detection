@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}CyberMood{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body data-page="{% block page_id %}dashboard{% endblock %}">
+  <div class="glow glow-a"></div>
+  <div class="glow glow-b"></div>
+  <div class="glow glow-c"></div>
+
+  <header class="topbar">
+    <div class="brand-wrap">
+      <a class="brand" href="{{ url_for('home') }}">CyberMood</a>
+      <p class="brand-sub">AI Phishing + Social-Engineering Defense</p>
+    </div>
+
+    <nav class="navbar">
+      <a class="nav-link" data-nav="dashboard" href="{{ url_for('home') }}">Dashboard</a>
+      <a class="nav-link" data-nav="email" href="{{ url_for('email_page') }}">Email Lab</a>
+      <a class="nav-link" data-nav="website" href="{{ url_for('website_page') }}">Website Lab</a>
+      <a class="nav-link" data-nav="intel" href="{{ url_for('intel_page') }}">Realtime Intel</a>
+    </nav>
+
+    <div class="sys-pulse">
+      <span id="healthDot" class="dot"></span>
+      <span id="healthText">Checking backend...</span>
+    </div>
+  </header>
+
+  <main class="layout-shell">
+    {% block content %}{% endblock %}
+  </main>
+
+  <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

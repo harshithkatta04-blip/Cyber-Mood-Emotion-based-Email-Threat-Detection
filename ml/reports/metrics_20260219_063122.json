@@ -1,0 +1,70 @@
+{
+  "generatedAtUtc": "2026-02-19T06:31:22+00:00",
+  "targetAccuracy": 0.97,
+  "split": {
+    "train": 0.7,
+    "validation": 0.1,
+    "test": 0.2
+  },
+  "tasks": [
+    {
+      "task": "email_text_phishing",
+      "type": "text",
+      "datasetPath": "ml\\data\\raw\\email_text_phishing.csv",
+      "status": "trained",
+      "reason": "",
+      "splitCounts": {
+        "train": 3902,
+        "validation": 558,
+        "test": 1114
+      },
+      "modelPath": "ml\\models\\email_text_phishing.joblib",
+      "validationAccuracy": 0.985663082437276,
+      "testAccuracy": 0.9829443447037702,
+      "meetsTarget": true,
+      "validationReport": "                  precision    recall  f1-score   support\n\n      legitimate     0.9938    0.9896    0.9917       483\nphishing_or_spam     0.9351    0.9600    0.9474        75\n\n        accuracy                         0.9857       558\n       macro avg     0.9644    0.9748    0.9695       558\n    weighted avg     0.9859    0.9857    0.9857       558\n",
+      "testReport": "                  precision    recall  f1-score   support\n\n      legitimate     0.9907    0.9896    0.9902       965\nphishing_or_spam     0.9333    0.9396    0.9365       149\n\n        accuracy                         0.9829      1114\n       macro avg     0.9620    0.9646    0.9633      1114\n    weighted avg     0.9830    0.9829    0.9830      1114\n"
+    },
+    {
+      "task": "url_phishing_tabular",
+      "type": "tabular",
+      "datasetPath": "ml\\data\\raw\\url_phishing_tabular.csv",
+      "status": "trained",
+      "reason": "",
+      "splitCounts": {
+        "train": 1719,
+        "validation": 245,
+        "test": 492
+      },
+      "modelPath": "ml\\models\\url_phishing_tabular.joblib",
+      "validationAccuracy": 0.9428571428571428,
+      "testAccuracy": 0.9552845528455285,
+      "meetsTarget": false,
+      "validationReport": "              precision    recall  f1-score   support\n\n  legitimate     0.9204    0.9541    0.9369       109\n    phishing     0.9621    0.9338    0.9478       136\n\n    accuracy                         0.9429       245\n   macro avg     0.9412    0.9440    0.9423       245\nweighted avg     0.9435    0.9429    0.9429       245\n",
+      "testReport": "              precision    recall  f1-score   support\n\n  legitimate     0.9539    0.9452    0.9495       219\n    phishing     0.9564    0.9634    0.9599       273\n\n    accuracy                         0.9553       492\n   macro avg     0.9551    0.9543    0.9547       492\nweighted avg     0.9553    0.9553    0.9553       492\n"
+    },
+    {
+      "task": "image_spoof_forensics",
+      "type": "tabular",
+      "datasetPath": "ml\\data\\raw\\image_spoof_features.csv",
+      "status": "skipped",
+      "reason": "Insufficient rows after split (need >=10 train and >=5 test)."
+    },
+    {
+      "task": "audio_impersonation_forensics",
+      "type": "tabular",
+      "datasetPath": "ml\\data\\raw\\audio_impersonation_features.csv",
+      "status": "skipped",
+      "reason": "Insufficient rows after split (need >=10 train and >=5 test)."
+    },
+    {
+      "task": "stego_forensics",
+      "type": "tabular",
+      "datasetPath": "ml\\data\\raw\\stego_forensics_features.csv",
+      "status": "skipped",
+      "reason": "Insufficient rows after split (need >=10 train and >=5 test)."
+    }
+  ],
+  "trainedTasks": 2,
+  "allTrainedMeetTarget": false
+}

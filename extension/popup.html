@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CyberMood Shield</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="card">
+    <header class="header">
+      <div>
+        <h1>CyberMood AI</h1>
+        <p id="sourceLabel">Protection engine ready</p>
+      </div>
+      <label class="toggle">
+        <input id="protectionToggle" type="checkbox">
+        <span></span>
+      </label>
+    </header>
+
+    <section class="panel status-panel">
+      <p class="status-title" id="statusTitle">Checking current site...</p>
+      <p class="status-subtitle" id="statusSubtitle">-</p>
+      <p class="url-row">Current URL <code id="currentUrl">-</code></p>
+      <div class="meter"><span id="scoreFill"></span></div>
+    </section>
+
+    <section class="panel">
+      <h2>Manual Check</h2>
+      <div class="manual-row">
+        <input id="manualUrl" type="text" placeholder="https://example.com/">
+        <button id="manualCheckBtn">Check</button>
+      </div>
+      <p id="manualResult" class="manual-result">Enter URL and run check.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Backend API</h2>
+      <div class="manual-row">
+        <input id="backendUrl" type="text" placeholder="http://127.0.0.1:5000/api/website/analyze">
+        <button id="saveBackendBtn">Save</button>
+      </div>
+      <p class="hint">If backend is unavailable, extension auto-switches to fallback local model.</p>
+    </section>
+
+    <section class="panel">
+      <h2>Model Insights</h2>
+      <p class="hint" id="emotionLine">Emotions: -</p>
+      <p class="hint" id="techniqueLine">Psych techniques: -</p>
+      <p class="hint" id="intentLine">Intent: -</p>
+      <p class="hint" id="adviceLine">Advice: -</p>
+    </section>
+
+    <section class="panel">
+      <h2>Statistics</h2>
+      <ul class="stats">
+        <li><span>URLs Checked</span><strong id="statChecked">0</strong></li>
+        <li><span>Threats Blocked</span><strong id="statBlocked">0</strong></li>
+        <li><span>Warnings Shown</span><strong id="statWarnings">0</strong></li>
+      </ul>
+      <div class="footer-actions">
+        <button id="clearStatsBtn" class="link-btn">Clear Stats</button>
+        <button id="rescanBtn" class="link-btn">Rescan</button>
+      </div>
+    </section>
+
+    <details class="panel">
+      <summary>Detected Indicators</summary>
+      <ul id="indicatorsList" class="indicators"></ul>
+    </details>
+  </main>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

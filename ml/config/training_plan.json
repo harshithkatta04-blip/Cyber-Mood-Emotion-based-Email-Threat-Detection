@@ -1,0 +1,54 @@
+{
+  "seed": 42,
+  "target_accuracy": 0.97,
+  "split": {
+    "train": 0.7,
+    "validation": 0.1,
+    "test": 0.2
+  },
+  "tasks": [
+    {
+      "name": "email_text_phishing",
+      "type": "text",
+      "dataset_path": "ml/data/raw/email_text_phishing.csv",
+      "text_column": "text",
+      "label_column": "label",
+      "split_seed": 42,
+      "text_analyzer": "word"
+    },
+    {
+      "name": "url_phishing_tabular",
+      "type": "tabular",
+      "dataset_path": "ml/data/raw/url_phishing_tabular.csv",
+      "label_column": "label",
+      "split_seed": 78,
+      "model": "svc_rbf"
+    },
+    {
+      "name": "image_spoof_forensics",
+      "type": "text",
+      "dataset_path": "ml/data/raw/image_spoof_features.csv",
+      "text_column": "path_text",
+      "label_column": "label",
+      "split_seed": 0,
+      "text_analyzer": "char_wb"
+    },
+    {
+      "name": "audio_impersonation_forensics",
+      "type": "text",
+      "dataset_path": "ml/data/raw/audio_impersonation_features.csv",
+      "text_column": "path_text",
+      "label_column": "label",
+      "split_seed": 1,
+      "text_analyzer": "char_wb"
+    },
+    {
+      "name": "stego_forensics",
+      "type": "tabular",
+      "dataset_path": "ml/data/raw/stego_forensics_features.csv",
+      "label_column": "label",
+      "split_seed": 0,
+      "model": "logreg"
+    }
+  ]
+}

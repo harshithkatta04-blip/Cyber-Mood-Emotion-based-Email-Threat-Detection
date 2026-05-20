@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}CyberMood Dashboard{% endblock %}
+{% block page_id %}dashboard{% endblock %}
+{% block content %}
+<section class="hero-card">
+  <p class="eyebrow">CyberMood Command Platform</p>
+  <h1>Threat signals become obvious before users click.</h1>
+  <p class="hero-copy">
+    Run multimodal email inspection, website verdict prediction, and a live intelligence feed from one control surface.
+  </p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="{{ url_for('email_page') }}">Analyze Email</a>
+    <a class="btn btn-secondary" href="{{ url_for('website_page') }}">Analyze Website</a>
+  </div>
+</section>
+
+<section class="lane-grid">
+  <a class="lane-card lane-email" href="{{ url_for('email_page') }}">
+    <p class="lane-kicker">Email Lab</p>
+    <h2>Pressure + emotion cues from text and media</h2>
+    <p>Detect urgency, impersonation, attachment tricks, QR traps, and audio social-engineering prompts.</p>
+  </a>
+  <a class="lane-card lane-web" href="{{ url_for('website_page') }}">
+    <p class="lane-kicker">Website Lab</p>
+    <h2>URL + page context phishing scoring</h2>
+    <p>Classify sites as Legitimate, Safe, or Unsafe using domain signals, content cues, and screenshot extraction.</p>
+  </a>
+  <a class="lane-card lane-intel" href="{{ url_for('intel_page') }}">
+    <p class="lane-kicker">Realtime Intel</p>
+    <h2>Rolling cross-channel threat feed</h2>
+    <p>Track high-risk activity in near realtime and prioritize incident review from one feed.</p>
+  </a>
+</section>
+
+<section class="grid two">
+  <article class="panel stat-panel">
+    <h2>Total Email Scans</h2>
+    <p id="statEmailTotal" class="stat-value">0</p>
+    <p class="hint">Includes all historical email threat analyses.</p>
+  </article>
+  <article class="panel stat-panel">
+    <h2>Total Website Scans</h2>
+    <p id="statWebTotal" class="stat-value">0</p>
+    <p class="hint">Includes extension and manual website checks.</p>
+  </article>
+  <article class="panel stat-panel">
+    <h2>Dangerous Findings</h2>
+    <p id="statDangerous" class="stat-value danger">0</p>
+    <p class="hint">Combined dangerous detections across channels.</p>
+  </article>
+  <article class="panel stat-panel">
+    <h2>Suspicious Findings</h2>
+    <p id="statSuspicious" class="stat-value warn">0</p>
+    <p class="hint">Potential threats requiring manual verification.</p>
+  </article>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h2>Model Accuracy Visualization</h2>
+    <span id="mlAccuracyMeta" class="chip">Waiting for training metrics...</span>
+  </div>
+  <p class="hint">
+    Validation/Test accuracy graph for each trained model from <code>ml/reports/latest_metrics.json</code>.
+  </p>
+  <div id="mlAccuracyChart" class="acc-chart"></div>
+</section>
+
+<section class="grid two">
+  <article class="panel">
+    <div class="panel-head">
+      <h2>Latest Email Scans</h2>
+      <a class="inline-link" href="{{ url_for('email_page') }}">Open Lab</a>
+    </div>
+    <ul id="dashboardEmailList" class="history-list"></ul>
+  </article>
+  <article class="panel">
+    <div class="panel-head">
+      <h2>Latest Website Scans</h2>
+      <a class="inline-link" href="{{ url_for('website_page') }}">Open Lab</a>
+    </div>
+    <ul id="dashboardWebList" class="history-list"></ul>
+  </article>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,3 @@
+lsb_ratio,lsb_entropy,chi_square,adjacent_corr,payload_hint,label,source
+0.5001,0.999,0.72,0.003,1,stego_or_payload,manual
+0.4720,0.914,8.14,0.188,0,clean,manual

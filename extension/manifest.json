@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "CyberMood Shield",
+  "description": "Detect phishing and social-engineering websites with CyberMood AI.",
+  "version": "1.0.0",
+  "permissions": [
+    "activeTab",
+    "notifications",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "http://127.0.0.1:5000/*",
+    "http://localhost:5000/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "CyberMood Shield",
+    "default_popup": "popup.html"
+  }
+}

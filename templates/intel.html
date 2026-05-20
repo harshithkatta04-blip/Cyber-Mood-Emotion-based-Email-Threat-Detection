@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}CyberMood Realtime Intel{% endblock %}
+{% block page_id %}intel{% endblock %}
+{% block content %}
+<section class="hero-card">
+  <p class="eyebrow">Realtime Intel Feed</p>
+  <h1>Live security activity stream from all CyberMood engines.</h1>
+  <p class="hero-copy">Unified realtime feed of email and website detections with rolling updates and threat-level prioritization.</p>
+</section>
+
+<section class="grid two">
+  <article class="panel stat-panel">
+    <h2>Live Feed Entries</h2>
+    <p id="intelTotal" class="stat-value">0</p>
+  </article>
+  <article class="panel stat-panel">
+    <h2>Critical Rate</h2>
+    <p id="intelCriticalRate" class="stat-value danger">0%</p>
+  </article>
+  <article class="panel stat-panel">
+    <h2>Safe Rate</h2>
+    <p id="intelSafeRate" class="stat-value ok">0%</p>
+  </article>
+  <article class="panel stat-panel">
+    <h2>Refresh Cycle</h2>
+    <p class="stat-value mono">5s</p>
+  </article>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h2>Unified Threat Feed</h2>
+    <button id="refreshIntelBtn" class="btn btn-secondary">Refresh Now</button>
+  </div>
+  <ul id="intelFeed" class="feed-list"></ul>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/intel.js') }}"></script>
+{% endblock %}

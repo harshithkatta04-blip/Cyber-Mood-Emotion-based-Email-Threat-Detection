@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block title %}CyberMood Email Lab{% endblock %}
+{% block page_id %}email{% endblock %}
+{% block content %}
+<section class="hero-card">
+  <p class="eyebrow">Email Lab</p>
+  <h1>Multimodal emotion-based email threat detection.</h1>
+  <p class="hero-copy">Realtime frontend + solid backend analysis for text, links, attachments, and multimedia cues.</p>
+</section>
+
+<section class="grid split">
+  <article class="panel">
+    <div class="panel-head">
+      <h2>Email Intake</h2>
+      <span class="chip">Live Preview Enabled</span>
+    </div>
+    <form id="analyzeForm">
+      <label for="emailText">Email Content</label>
+      <textarea id="emailText" name="emailText" rows="12" placeholder="Paste full email content..." required></textarea>
+
+      <div class="preview-strip">
+        <strong>Realtime Signal Preview</strong>
+        <span id="livePreview">No pressure cues detected yet.</span>
+      </div>
+
+      <label for="embeddedLinks">Embedded Links (one per line)</label>
+      <textarea id="embeddedLinks" name="embeddedLinks" rows="4" placeholder="https://example.com/reset"></textarea>
+
+      <label for="mediaLinks">Embedded Media Links (images/videos/audio/GIFs)</label>
+      <textarea id="mediaLinks" name="mediaLinks" rows="3" placeholder="https://cdn.example.com/warning.gif"></textarea>
+
+      <label for="attachments">Attachments / Embedded Media</label>
+      <input id="attachments" name="attachments" type="file" multiple>
+      <p id="fileMeta" class="hint">No files selected.</p>
+
+      <div class="mode-strip">
+        <label class="inline-check" for="enterpriseMode">
+          <input id="enterpriseMode" name="enterpriseMode" type="checkbox">
+          Enable Enterprise Mode
+        </label>
+        <label class="inline-check" for="strictMode">
+          <input id="strictMode" name="strictMode" type="checkbox">
+          Strict Policy (hard fail/warn on unavailable OCR/ASR/CV engines)
+        </label>
+      </div>
+
+      <div class="row-actions">
+        <button type="button" id="sampleBtn" class="btn btn-secondary">Load Attack Scenario</button>
+        <button type="submit" id="analyzeBtn" class="btn btn-primary">Run Full Analysis</button>
+      </div>
+    </form>
+  </article>
+
+  <article id="riskPanel" class="panel tone-safe">
+    <div class="panel-head">
+      <h2>Threat Result</h2>
+      <span id="riskBadge" class="risk-badge risk-safe">Safe</span>
+    </div>
+
+    <div class="score-wrap">
+      <div id="scoreDial" class="score-dial" style="--score:0">
+        <span id="scoreValue">0</span>
+      </div>
+      <div class="score-meta">
+        <p class="mono">Threat Score</p>
+        <h3 id="verdictLine">Awaiting analysis...</h3>
+        <div class="bar"><span id="scoreFill"></span></div>
+        <div class="metrics">
+          <div><strong id="emotionCount">0</strong><span>Emotions</span></div>
+          <div><strong id="techniqueCount">0</strong><span>Psych Cues</span></div>
+          <div><strong id="indicatorCount">0</strong><span>Indicators</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="loading" class="loading hidden">Analyzing text + multimedia signals...</div>
+    <div id="resultWrap" class="hidden stack">
+      <div>
+        <h3>Emotions</h3>
+        <div id="emotions" class="chip-wrap"></div>
+      </div>
+      <div>
+        <h3>Psychological Techniques</h3>
+        <div id="techniques" class="chip-wrap"></div>
+      </div>
+      <div>
+        <h3>Social-Engineering Intent</h3>
+        <p id="intentSummary"></p>
+      </div>
+      <div>
+        <h3>Phishing Indicators</h3>
+        <ul id="indicators" class="list"></ul>
+      </div>
+      <div>
+        <h3>Multimedia Risks</h3>
+        <ul id="mediaRisks" class="list"></ul>
+      </div>
+      <div>
+        <h3>Explanation</h3>
+        <p id="explanation"></p>
+      </div>
+      <div>
+        <h3>User Advice</h3>
+        <p id="userAdvice"></p>
+      </div>
+      <div id="enterpriseWrap" class="hidden">
+        <h3>Enterprise Diagnostics</h3>
+        <p id="enterpriseMeta" class="hint"></p>
+        <h4>Per-Modality Confidence</h4>
+        <ul id="modalityConfidence" class="list"></ul>
+        <h4>Engine Status</h4>
+        <ul id="engineStatus" class="list"></ul>
+        <h4>Operational Flags</h4>
+        <ul id="operationalFlags" class="list"></ul>
+        <h4>Forensic Signals</h4>
+        <ul id="forensicSignals" class="list"></ul>
+      </div>
+      <details>
+        <summary>Raw JSON</summary>
+        <pre id="rawJson"></pre>
+      </details>
+    </div>
+  </article>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h2>Email Scan History</h2>
+    <button id="refreshHistoryBtn" class="btn btn-secondary">Refresh</button>
+  </div>
+  <p class="hint"><span id="historyCount">0 scans</span> • Auto-refresh every 12s for realtime workflow.</p>
+  <ul id="historyList" class="history-list"></ul>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/email.js') }}"></script>
+{% endblock %}

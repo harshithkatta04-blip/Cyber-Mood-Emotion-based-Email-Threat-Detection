@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}CyberMood Website Lab{% endblock %}
+{% block page_id %}website{% endblock %}
+{% block content %}
+<section class="hero-card">
+  <p class="eyebrow">Website Lab</p>
+  <h1>Predict phishing risk for websites in realtime.</h1>
+  <p class="hero-copy">Classifies URLs as Legitimate, Safe, or Unsafe with confidence, emotional pressure cues, and technical phishing indicators.</p>
+</section>
+
+<section class="grid split">
+  <article class="panel">
+    <div class="panel-head">
+      <h2>URL Threat Analyzer</h2>
+      <span class="chip">Realtime Auto-Check</span>
+    </div>
+    <form id="websiteForm">
+      <label for="urlInput">Website URL</label>
+      <input id="urlInput" type="text" placeholder="https://example.com/login" required>
+
+      <label for="pageTitle">Page Title (optional context)</label>
+      <input id="pageTitle" type="text" placeholder="Urgent Security Verification">
+
+      <label for="pageText">Page Text Sample (optional context)</label>
+      <textarea id="pageText" rows="8" placeholder="Paste suspicious visible text from the page..."></textarea>
+
+      <div class="row-actions">
+        <button id="sampleWebBtn" type="button" class="btn btn-secondary">Load Phishing Example</button>
+        <button id="checkWebBtn" type="submit" class="btn btn-primary">Check Website</button>
+      </div>
+    </form>
+  </article>
+
+  <article id="webRiskPanel" class="panel tone-safe">
+    <div class="panel-head">
+      <h2>Website Verdict</h2>
+      <span id="webRiskBadge" class="risk-badge risk-safe">Legitimate</span>
+    </div>
+
+    <div class="score-wrap">
+      <div id="webScoreDial" class="score-dial" style="--score:0">
+        <span id="webThreatScore">0</span>
+      </div>
+      <div class="score-meta">
+        <p class="mono">Threat Score</p>
+        <h3 id="webVerdictLine">Awaiting URL check...</h3>
+        <div class="bar"><span id="webScoreFill"></span></div>
+        <div class="metrics">
+          <div><strong id="webConfidence">0%</strong><span>Confidence</span></div>
+          <div><strong id="webEmotionCount">0</strong><span>Emotions</span></div>
+          <div><strong id="webIndicatorCount">0</strong><span>Indicators</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="webLoading" class="loading hidden">Predicting website risk...</div>
+    <div id="webResultWrap" class="stack hidden">
+      <div>
+        <h3>Detected Emotions</h3>
+        <div id="webEmotions" class="chip-wrap"></div>
+      </div>
+      <div>
+        <h3>Psychological Techniques</h3>
+        <div id="webTechniques" class="chip-wrap"></div>
+      </div>
+      <div>
+        <h3>Phishing Indicators</h3>
+        <ul id="webIndicators" class="list"></ul>
+      </div>
+      <div>
+        <h3>Explanation</h3>
+        <p id="webExplanation"></p>
+      </div>
+      <div>
+        <h3>User Advice</h3>
+        <p id="webAdvice"></p>
+      </div>
+      <details>
+        <summary>Raw JSON</summary>
+        <pre id="webRawJson"></pre>
+      </details>
+    </div>
+  </article>
+</section>
+
+<section class="panel">
+  <div class="panel-head">
+    <h2>Website Scan History</h2>
+    <button id="refreshWebHistoryBtn" class="btn btn-secondary">Refresh</button>
+  </div>
+  <p class="hint"><span id="webHistoryCount">0 scans</span> • Auto-refresh every 10s.</p>
+  <ul id="webHistoryList" class="history-list"></ul>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/website.js') }}"></script>
+{% endblock %}

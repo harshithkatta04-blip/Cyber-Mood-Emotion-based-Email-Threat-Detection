@@ -1,0 +1,3 @@
+pitch_std,jitter,flatness_mean,voiced_ratio,asr_urgency_score,ceo_phrase_score,label,source
+4.3,0.006,0.041,0.91,0.87,0.93,impersonated_or_scam,manual
+28.7,0.029,0.143,0.62,0.11,0.03,legitimate,manual
